@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server"
+    "test": "react-scripts test --env=jsdom",
+    "server": "node server",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,12 @@
     "cors": "^2.8.4",
     "diskdb": "^0.1.17",
     "express": "^4.16.2",
-    "node-fetch": "^2.0.0"
+    "node-fetch": "^2.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "^1.1.1"
+  },
+  "devDependencies": {
+    "react-scripts": "^1.1.1"
   }
 }
