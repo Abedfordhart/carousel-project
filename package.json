@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/amelia-brown/carousel-project#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "diskdb": "^0.1.17",
@@ -32,5 +33,6 @@
   },
   "devDependencies": {
     "react-scripts": "^1.1.1"
-  }
+  },
+  "proxy": "http://localhost:3000/"
 }
