@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Header from './components/header/Header.js'
 import MovieListEntry from './components/movieListEntry/MovieListEntry.js'
 import axios from 'axios';
-// import styles from './index.css'
 
 class App extends Component {
   constructor(props){
