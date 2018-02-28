@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Header from './components/header/Header.js'
-import MovieListEntry from './components/movieListEntry/MovieListEntry.js'
+//import Header from './components/header/Header.js';
+import MovieListEntry from './components/movieListEntry/MovieListEntry.js';
+//import Indicator from './components/indicator/Indicator.js';
 import axios from 'axios';
 
 class App extends Component {
@@ -8,10 +9,13 @@ class App extends Component {
     super(props);
 
     this.state = {
-      movies: '',
+      media: [],
       currentPage: 1,
       numPages: 4
     }
+
+    this.next = this.next.bind(this);
+    this.previous = this.previous.bind(this);
   }
 
   componentDidMount() {
@@ -21,16 +25,30 @@ class App extends Component {
   getData(page, amt) {
     axios.get(`/items/?page=${page}&amt=${amt}`)
       .then(data => {
-      this.setState({movies: data});
-      console.log(this.state.movies)
+      this.setState({media: data.data});
+      console.log(this.state.media)
     })
+  }
+
+  next() {
+    let currentPage = this.state.currentPage
+    currentPage++;
+    this.setState({currentPage: currentPage});
+    this.getData(currentPage, this.state.numPages);
+  }
+
+  previous() {
+    let currentPage = this.state.currentPage
+    currentPage--;
+    this.setState({currentPage: currentPage});
+    this.getData(currentPage, this.state.numPages);
   }
  
   render() {
     return (
       <div className="App">
-          <Header/>
-          <MovieListEntry/>
+          <h1 className="rec">Top recommendations for you</h1>
+          <MovieListEntry media={this.state.media} next={this.next} previous={this.previous}/>
       </div>
     );
   }

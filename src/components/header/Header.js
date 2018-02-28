@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import './Header.css';
+// import React, { Component } from 'react';
+// import './Header.css';
 
-class Header extends Component {
+// class Header extends Component {
  
-  render() {
-    return (
-        <div>
-          <h1 className="rec">Top recommendations for you</h1>
-        </div>
-    );
-  }
-}
+//   render() {
+//     return (
+//         <div>
+//           <h1 className="rec">Top recommendations for you</h1>
+//         </div>
+//     );
+//   }
+// }
 
-export default Header;
+// export default Header;
