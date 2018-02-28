@@ -19,7 +19,8 @@ class MovieListEntry extends Component {
             {this.props.media.map((media, i) => {
               return (
                 <div className="media" key={i}>
-                <i className="material-icons heart">favorite</i>
+                  <i className="material-icons heart">favorite</i>
+                  <i className="material-icons play">play_circle_outline</i>
                   <img className="movie" alt= '' src={media.itemData.image}/>
                   <div className="title">{media.name}</div>
                   <div className="genre">{media.itemData.definingInfo}</div>
