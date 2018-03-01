@@ -9,7 +9,25 @@ body {
 }
 
 .rec {
+  position:relative;
   display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 34px;
-  padding: 0px 0px 0px 417px;
+  margin-bottom: 40px;
+  margin-top: 200px
+}
+
+.indicator {
+  font-size: 10px;
+  margin: 0px 7px 0px 7px; 
+}
+
+.indicator-container {
+  margin-left:468px;
+}
+
+.active {
+  background-color: white;
+  border-radius: 50%
 }

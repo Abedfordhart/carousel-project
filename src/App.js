@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MovieListEntry from './components/movieListEntry/MovieListEntry.js';
+import MediaList from './components/MediaList/MediaList.js';
 import axios from 'axios';
 
 class App extends Component {
@@ -9,7 +9,8 @@ class App extends Component {
     this.state = {
       media: [],
       currentPage: 1,
-      numPages: 4 
+      numPages: 4,
+      indicators: []
     }
 
     this.getData = this.getData.bind(this);
@@ -19,13 +20,14 @@ class App extends Component {
 
   componentDidMount() {
     this.getData(this.state.currentPage, this.state.numPages);
+    this.indicator();
   }
 
   getData(page, amt) {
     axios.get(`/items/?page=${page}&amt=${amt}`)
       .then(data => {
       this.setState({media: data.data});
-      console.log(this.state.media)
+      this.indicator();
     })
       .catch(err => {
         throw err;
@@ -53,12 +55,32 @@ class App extends Component {
     this.setState({currentPage: currentPage});
     this.getData(currentPage, this.state.numPages);
   }
- 
+
+  indicator() {
+    let currentPage = this.state.currentPage;
+    let numPages = this.state.numPages;
+    let indicators = [];
+
+    for (let i = 1; i <= numPages; i++) {
+      if (i === currentPage) {
+        indicators.push(<i key={i} className="material-icons indicator active">panorama_fish_eye</i>)
+      } else {
+        indicators.push(<i key={i} className="material-icons indicator">panorama_fish_eye</i>)
+      }
+    }
+
+    this.setState({indicators: indicators});
+  }
+
   render() {
     return (
-      <div className="App">
-          <h1 className="rec">Top recommendations for you</h1>
-          <MovieListEntry media={this.state.media} next={this.next} previous={this.previous} getData={this.getData} currentPage={this.state.currentPage} numPages={this.state.numPages}/>
+      <div id="App">
+        <div className="rec">Top recommendations for you
+          <div className="indicator-container">
+            {this.state.indicators}
+          </div>
+        </div>
+        <MediaList media={this.state.media} next={this.next} previous={this.previous} getData={this.getData} currentPage={this.state.currentPage} numPages={this.state.numPages}/>
       </div>
     );
   }

@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
-import './MovieListEntry.css';
+import './MediaList.css';
 import axios from 'axios';
 
-class MovieListEntry extends Component {
+class MediaList extends Component {
+
+  componentDidMount() {
+    axios.post(`/items/${852374}`, {
+      rating: null
+    })
+    .catch(err => {
+      throw err
+    })
+  }
 
   handleFavorite(uuid) {
     axios.post(`/items/${uuid}`, {
@@ -20,7 +29,6 @@ class MovieListEntry extends Component {
   }
 
   render() {
-    console.log('here are your props sir', this.props)
     return (
       <div>
         <div className="movie-container">
@@ -43,4 +51,4 @@ class MovieListEntry extends Component {
   }
 }
 
-export default MovieListEntry;
+export default MediaList;
