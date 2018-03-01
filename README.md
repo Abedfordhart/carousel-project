@@ -25,9 +25,13 @@ Icons can be found at http://google.github.io/material-design-icons/
 
 A similar font can be found at https://fonts.google.com/specimen/Roboto
 
-## To run the API server:
+## To run the API server & start the application:
 
-`npm install && npm run start`
+`npm install && npm run server`
+
+then
+
+`npm run start`
 
 to get items:
 
