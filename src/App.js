@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-//import Header from './components/header/Header.js';
 import MovieListEntry from './components/movieListEntry/MovieListEntry.js';
-//import Indicator from './components/indicator/Indicator.js';
 import axios from 'axios';
 
 class App extends Component {
@@ -11,9 +9,10 @@ class App extends Component {
     this.state = {
       media: [],
       currentPage: 1,
-      numPages: 4
+      numPages: 4 
     }
 
+    this.getData = this.getData.bind(this);
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
   }
@@ -28,18 +27,29 @@ class App extends Component {
       this.setState({media: data.data});
       console.log(this.state.media)
     })
+      .catch(err => {
+        throw err;
+      })
   }
 
   next() {
     let currentPage = this.state.currentPage
-    currentPage++;
+    if(currentPage < 4) {
+      currentPage++;
+    } else if(currentPage >= 4) {
+      currentPage = 1;
+    }
     this.setState({currentPage: currentPage});
     this.getData(currentPage, this.state.numPages);
   }
 
   previous() {
     let currentPage = this.state.currentPage
-    currentPage--;
+    if(currentPage > 1) {
+      currentPage--;
+    } else if(currentPage <= 1) {
+      currentPage = 4;
+    }
     this.setState({currentPage: currentPage});
     this.getData(currentPage, this.state.numPages);
   }
@@ -48,7 +58,7 @@ class App extends Component {
     return (
       <div className="App">
           <h1 className="rec">Top recommendations for you</h1>
-          <MovieListEntry media={this.state.media} next={this.next} previous={this.previous}/>
+          <MovieListEntry media={this.state.media} next={this.next} previous={this.previous} getData={this.getData} currentPage={this.state.currentPage} numPages={this.state.numPages}/>
       </div>
     );
   }
